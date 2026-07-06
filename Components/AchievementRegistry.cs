@@ -56,7 +56,7 @@ namespace Systems.SimpleAchievements.Components
             _instance = null;
             GameObject gameObject = new GameObject("[AchievementRegistry]");
             _instance = gameObject.AddComponent<AchievementRegistry>();
-            DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying) DontDestroyOnLoad(gameObject);
         }
 
         private HashSet<string> _unlockedIds;
@@ -75,16 +75,38 @@ namespace Systems.SimpleAchievements.Components
 
             _instance    = this;
             _unlockedIds = new HashSet<string>();
-            DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying) DontDestroyOnLoad(gameObject);
 
             BuildConditionalCache();
             BuildPlatformCache();
             InitialisePlatforms();
             LoadFromDisk();
 
-            _tickDelegate = OnTick;
-            TickSystem.RegisterHandler(_tickDelegate);
+            if (Application.isPlaying)
+            {
+                _tickDelegate = OnTick;
+                TickSystem.RegisterHandler(_tickDelegate);
+            }
         }
+
+#if UNITY_INCLUDE_TESTS
+        internal void AwakeForTests()
+        {
+            Awake();
+        }
+
+        internal void ShutdownForTests()
+        {
+            if (!ReferenceEquals(_platforms, null))
+            {
+                ShutdownPlatforms();
+                _platforms = null;
+            }
+
+            if (ReferenceEquals(_instance, this))
+                _instance = null;
+        }
+#endif
 
         private void OnDestroy()
         {
@@ -107,7 +129,7 @@ namespace Systems.SimpleAchievements.Components
 
         private void BuildConditionalCache()
         {
-            ROListAccess<AchievementData> access = AchievementDatabase.GetAll<AchievementData>();
+            ROListAccess<AchievementData> access = AchievementDatabase.GetAllAchievements();
             IReadOnlyList<AchievementData> list  = access.List;
 
             int conditionalCount = 0;
@@ -133,7 +155,7 @@ namespace Systems.SimpleAchievements.Components
         private void BuildPlatformCache()
         {
             ROListAccess<AchievementPlatformBase> access =
-                AchievementPlatformDatabase.GetAll<AchievementPlatformBase>();
+                AchievementPlatformDatabase.GetAllPlatforms();
             IReadOnlyList<AchievementPlatformBase> list = access.List;
 
             _platforms = new AchievementPlatformBase[list.Count];
@@ -180,6 +202,13 @@ namespace Systems.SimpleAchievements.Components
                 if (achievement.CheckCondition()) UnlockInternal(achievement);
             }
         }
+
+#if UNITY_INCLUDE_TESTS
+        internal void TickForTests(float deltaTimeSeconds)
+        {
+            OnTick(deltaTimeSeconds);
+        }
+#endif
 
         // ------------------------------------------------------------------ //
         //  Unlock logic                                                        //
