@@ -26,7 +26,7 @@ namespace Systems.SimpleAchievements.Data.Databases
 
         [NotNull] protected override string AddressableLabel => LABEL;
 
-        [NotNull] public static ROListAccess<AchievementData> GetAllAchievements()
+       public static ROListAccess<AchievementData> GetAllAchievements()
         {
             _instance.EnsureLoaded();
 

@@ -22,7 +22,7 @@ namespace Systems.SimpleAchievements.Data.Databases
 
         [NotNull] protected override string AddressableLabel => LABEL;
 
-        [NotNull] public static ROListAccess<AchievementPlatformBase> GetAllPlatforms()
+        public static ROListAccess<AchievementPlatformBase> GetAllPlatforms()
         {
             _instance.EnsureLoaded();
 
