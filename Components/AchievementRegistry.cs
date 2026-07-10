@@ -300,7 +300,8 @@ namespace Systems.SimpleAchievements.Components
         public void ParseSaveFile(AchievementSaveFile saveFile)
         {
             _unlockedIds.Clear();
-            // if (ReferenceEquals(saveFile.UnlockedPlatformIds, null)) return;
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (ReferenceEquals(saveFile?.UnlockedPlatformIds, null)) return;
 
             ReadOnlySpan<string> ids = saveFile.UnlockedPlatformIds.AsSpan();
             for (int i = 0; i < ids.Length; i++)

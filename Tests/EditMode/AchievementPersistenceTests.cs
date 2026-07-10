@@ -78,6 +78,20 @@ namespace Systems.SimpleAchievements.Tests
         }
 
         [Test]
+        public void ParseSaveFile_WithNullIdsTreatsSaveAsEmpty()
+        {
+            TestAchievement achievement = CreateRegisteredAchievement("ACH_NULL_SAVE");
+            AchievementRegistry registry = CreateRegistry();
+            AchievementUnlockContext context = new AchievementUnlockContext(achievement);
+            AchievementAPI.Unlock(in context);
+
+            AchievementSaveFile file = new AchievementSaveFile {UnlockedPlatformIds = null};
+            registry.ParseSaveFile(file);
+
+            Assert.IsFalse(AchievementAPI.IsUnlocked("ACH_NULL_SAVE"));
+        }
+
+        [Test]
         public void DiskSaveAndLoad_RoundTripsConfiguredSaveFile()
         {
             string fileName = CreateAchievementFileName("disk");
