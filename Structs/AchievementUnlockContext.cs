@@ -1,10 +1,11 @@
 using JetBrains.Annotations;
 using Systems.SimpleAchievements.Abstract;
+using Systems.SimpleAchievements.Utility;
 
 namespace Systems.SimpleAchievements.Structs
 {
     /// <summary>
-    ///     Context passed to <see cref="Utility.AchievementAPI.Unlock"/> to identify and configure an unlock request.
+    ///     Context passed to <see cref="AchievementAPI.Unlock"/> to identify and configure an unlock request.
     /// </summary>
     public readonly ref struct AchievementUnlockContext
     {

@@ -1,3 +1,4 @@
+using Systems.SimpleAchievements.Utility;
 using UnityEngine;
 
 namespace Systems.SimpleAchievements.Data.Settings
@@ -43,7 +44,7 @@ namespace Systems.SimpleAchievements.Data.Settings
         /// <summary>
         ///     When <c>true</c> the registry automatically writes a save file to disk each time an
         ///     achievement is unlocked. Disable if you prefer to call 
-        ///     <see cref="Utility.AchievementAPI.Save"/> manually.
+        ///     <see cref="AchievementAPI.Save"/> manually.
         /// </summary>
         public bool AutoSaveOnUnlock => _autoSaveOnUnlock;
 

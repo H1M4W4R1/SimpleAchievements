@@ -287,7 +287,7 @@ namespace Systems.SimpleAchievements.Components
         public void CollectData() { }
 
         /// <inheritdoc />
-        [NotNull] public AchievementSaveFile BuildSaveFile()
+        public AchievementSaveFile BuildSaveFile()
         {
             string[] ids = new string[_unlockedIds.Count];
             _unlockedIds.CopyTo(ids);
@@ -297,10 +297,10 @@ namespace Systems.SimpleAchievements.Components
         }
 
         /// <inheritdoc />
-        public void ParseSaveFile([NotNull] AchievementSaveFile saveFile)
+        public void ParseSaveFile(AchievementSaveFile saveFile)
         {
             _unlockedIds.Clear();
-            if (ReferenceEquals(saveFile.UnlockedPlatformIds, null)) return;
+            // if (ReferenceEquals(saveFile.UnlockedPlatformIds, null)) return;
 
             ReadOnlySpan<string> ids = saveFile.UnlockedPlatformIds.AsSpan();
             for (int i = 0; i < ids.Length; i++)

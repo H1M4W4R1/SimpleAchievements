@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using Systems.SimpleAchievements.Data.Databases;
 using Systems.SimpleAchievements.Operations;
 using Systems.SimpleAchievements.Structs;
+using Systems.SimpleAchievements.Utility;
 using Systems.SimpleCore.Automation.Attributes;
 using Systems.SimpleCore.Operations;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Systems.SimpleAchievements.Abstract
 {
     /// <summary>
     ///     Base ScriptableObject for all achievements. Subclass to define either a manually triggered
-    ///     achievement (override nothing, call <see cref="Utility.AchievementAPI.Unlock"/> explicitly) or a
+    ///     achievement (override nothing, call <see cref="AchievementAPI.Unlock"/> explicitly) or a
     ///     condition-monitored achievement (set <see cref="IsConditional"/> to <c>true</c> and override
     ///     <see cref="EvaluateCondition"/>).
     /// </summary>
@@ -56,7 +57,7 @@ namespace Systems.SimpleAchievements.Abstract
 
         /// <summary>
         ///     Validates whether the achievement may be unlocked through
-        ///     <see cref="Utility.AchievementAPI.Unlock"/>. Override to add gameplay-specific gates.
+        ///     <see cref="AchievementAPI.Unlock"/>. Override to add gameplay-specific gates.
         /// </summary>
         /// <param name="context">Unlock context supplied by the caller.</param>
         /// <returns>An operation result describing whether the unlock is permitted.</returns>
