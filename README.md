@@ -173,6 +173,13 @@ if (!ReferenceEquals(saveFile, null))
 | `AchievementOperations.InvalidAchievement()` | Achievement reference, destroyed state, or platform ID is invalid |
 | `AchievementOperations.ConditionNotMet()` | Conditional achievement was requested before its condition was met |
 
+## Examples included
+
+- `Scene - Achievements.unity`: runs a console-driven manual unlock and conditional unlock example.
+- `ExampleAchievementsScene`: scene driver with a context menu action for replaying the example.
+- `ExampleManualAchievement` and `ExampleConditionalAchievement`: configured example assets used by the scene.
+- `SteamAchievementPlatform` and `EpicAchievementPlatform`: mocked platform adapters for replacing with SDK integrations.
+
 ## Notes
 
 - Platform IDs must be non-empty and match the external SDK configuration exactly.
