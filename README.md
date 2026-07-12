@@ -175,8 +175,8 @@ if (!ReferenceEquals(saveFile, null))
 
 ## Examples included
 
-- `Scene - Achievements.unity`: runs a console-driven manual unlock and conditional unlock example.
-- `ExampleAchievementsScene`: scene driver with a context menu action for replaying the example.
+- `Scene - Achievements.unity`: exposes runtime Unity UI for manual, conditional, blocked, forced, and reset unlock cases.
+- `ExampleAchievementsScene`: scene driver with runtime buttons and context menu actions for replaying the examples.
 - `ExampleManualAchievement` and `ExampleConditionalAchievement`: configured example assets used by the scene.
 - `SteamAchievementPlatform` and `EpicAchievementPlatform`: mocked platform adapters for replacing with SDK integrations.
 

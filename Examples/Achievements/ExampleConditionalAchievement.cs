@@ -20,6 +20,9 @@ namespace Systems.SimpleAchievements.Examples.Achievements
         // In production, read from a stat or gameplay system instead.
         private static int _currentCount;
 
+        public static int CurrentCount => _currentCount;
+        public int TargetCount => _targetCount;
+
         /// <summary>Increments the internal counter used by the example condition.</summary>
         public static void IncrementCount() => _currentCount++;
 
